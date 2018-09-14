@@ -9,6 +9,7 @@ Development
 
 ### Bug fixes / enhancements
 - Fix legacy functions in the data mover that doesn't process multiword type functions
+- Fix `image_tag` function to include the assets versioning (#14266)
 
 4.20.2 (2018-09-10)
 -------------------
