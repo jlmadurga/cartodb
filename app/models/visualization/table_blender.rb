@@ -30,6 +30,7 @@ module CartoDB
 
         maps.each { |map| copier.copy_data_layers(map, destination_map, user) }
 
+        destination_map.provider = Carto::Map.provider_for_baselayer_kind(destination_map.layers.first.kind)
         destination_map.user_id = user.id
         destination_map.save
         destination_map

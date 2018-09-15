@@ -85,6 +85,21 @@ describe TableBlender do
         map.user_layers.first.options['name'].should_not eq fake_name
         map.user_layers.first.options['name'].should eq Cartodb.default_basemap['name']
       end
+      it 'provider is set from layer not from base map' do
+        @carto_user1.builder_enabled = true
+        # Let's force a name change in order to be sure that it's not taken from the table map
+        fake_name = 'fake_basemap_name'
+        @table.map.user_layers.first.options['name'] = fake_name
+        @table.map.provider = 'googlemaps'
+        @table.save
+
+        blender = CartoDB::Visualization::TableBlender.new(@carto_user1, [@table])
+
+        map = blender.blend
+        map.provider.should eq 'leaflet'
+        map.user_layers.first.options['name'].should_not eq fake_name
+        map.user_layers.first.options['name'].should eq Cartodb.default_basemap['name']
+      end
     end
   end
 
