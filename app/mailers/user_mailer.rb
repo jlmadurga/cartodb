@@ -42,15 +42,6 @@ class UserMailer < ActionMailer::Base
          subject: @subject)
   end
 
-  def unshare_table(table_visualization_name, table_visualization_owner_name, user)
-    @table_visualization_name = table_visualization_name
-    @table_visualization_owner_name = table_visualization_owner_name
-    @user = user
-    @subject = "#{@table_visualization_owner_name} has stopped sharing a CARTO dataset with you"
-    mail :to => @user.email,
-         :subject => @subject
-  end
-
   def unshare_visualization(visualization_name, visualization_owner_name, user)
     @visualization_name = visualization_name
     @visualization_owner_name = visualization_owner_name

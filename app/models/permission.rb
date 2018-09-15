@@ -76,10 +76,6 @@ module CartoDB
                     if p['type'].include?('r')
                       ::Resque.enqueue(::Resque::UserJobs::Mail::ShareTable, self.entity.id, affected_id)
                     end
-                  elsif p['action'] == 'revoke'
-                    if p['type'].include?('r')
-                      ::Resque.enqueue(::Resque::UserJobs::Mail::UnshareTable, self.entity.name, self.owner_username, affected_id)
-                    end
                   end
                 end
               end

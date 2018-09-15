@@ -161,10 +161,6 @@ class Carto::Permission < ActiveRecord::Base
                 if p['type'].include?('r')
                   ::Resque.enqueue(::Resque::UserJobs::Mail::ShareTable, entity.id, affected_id)
                 end
-              elsif p['action'] == 'revoke'
-                if p['type'].include?('r')
-                  ::Resque.enqueue(::Resque::UserJobs::Mail::UnshareTable, entity.name, owner_username, affected_id)
-                end
               end
             end
           end

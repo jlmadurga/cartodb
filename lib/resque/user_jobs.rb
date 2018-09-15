@@ -116,16 +116,6 @@ module Resque
         end
       end
 
-      module UnshareTable
-        extend ::Resque::Metrics
-        @queue = :users
-
-        def self.perform(table_name, table_owner_name, user_id)
-          u = ::User.where(id: user_id).first
-          UserMailer.unshare_table(table_name, table_owner_name, u).deliver
-        end
-      end
-
       module MapLiked
         extend ::Resque::Metrics
         @queue = :users
